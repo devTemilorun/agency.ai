@@ -4,26 +4,11 @@ import { motion } from "motion/react"
 
 const Footer = ({theme}) => {
 
-    const footerLinks = [
-        {
-            type: 'whatsApp',
-            label: 'WhatsApp',
-            url: `https://wa.me/2347031225674?text=Hello!%20I'm%20interested%20in%20your%20services.`,
-            displayImage: assets.whatsapp_icon
-        },
-        {
-            type: 'email',
-            label: 'Email',
-            url: `mailto:dev.temilorun@gmail.com?subject=Inquiry&body=Hello,%0A%0AI'd%20like%20to%20discuss...`,
-            displayImage: assets.gmail_icon
-        },
-        {
-            type: 'Linkedin',
-            label: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/olawuni-israel-oluwatemilorun-85714a324',
-            displayImage: assets.linkedin_icon
-        },
-    ]
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+    }
 
   return (
     <motion.div
@@ -65,23 +50,25 @@ const Footer = ({theme}) => {
            </div>
         </motion.div>
       </div>
-      <hr className='my-6 border-gray-300 dark:border-gray-600' />
+      {/* <hr className='my-6 border-gray-300 dark:border-gray-600' /> */}
 
 
       {/* ------footer bottom-------- */}
       <motion.div
-        initial={{ opacity:0}}
-        whileInView={{opacity:1}}
-        transition={{duration:0.5, delay:0.4}}
-        viewport={{once:true}}
-       className='pb-6 text-sm text-gray-500 flex justify-center sm:justify-between gap-4 flex-wrap'>
-        <p>Copyright 2026 - agenct.ai -- dev.Temilorun.  All Right Reserved</p>
-        <div className='flex items-center justify-between gap-4'>
-            {footerLinks.map((link)=>(
-                <a key={link.label} href={link.url} className='w-6 h-8' target='_blank' rel='noopener noreferrer' > <img src={link.displayImage} alt="" /> </a>
-            ))}
-        </div>
-      </motion.div>
+          variants={itemVariants}
+          className="mt-16 pt-8 block border-t border-gray-800 text-center text-sm text-gray-500 mb-4"
+        >
+          <p>
+            © {new Date().getFullYear()} Olawuni Israel Oluwatemilorun.  
+            <span className="mx-3">•</span>
+            Built with passion & code.
+          </p>
+          <a 
+            className='text-lg underline font-black text-black/60 cursor-pointer hover:text-xl'
+            href={`mailto:dev.temilorun@gmail.com?subject=Inquiry&body=Hello,%0A%0AI'd%20like%20to%20discuss...`}>
+             drop a message
+            </a>
+        </motion.div>
     </motion.div>
   )
 }
